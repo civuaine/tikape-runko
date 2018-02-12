@@ -14,6 +14,8 @@ public class Main {
         database.init();
 
         OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
+        
+        System.out.println("Hello world");
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
