@@ -41,6 +41,6 @@ public class Database {
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("CREATE TABLE Resepti (id integer PRIMARY KEY, nimi varchar(255), luokitus double, valmistusaika integer);");
         lista.add("CREATE TABLE Raaka_aine (id integer PRIMARY KEY, nimi varchar(255));");
-        lista.add("CREATE TABLE ReseptiRaaka_aine (resepti_id integer, raaka_aine_id integer, jarjestys integer, maara varchar(10), lisaohje varchar(255), FOREIGN KEY (;");
+        lista.add("CREATE TABLE ReseptiRaaka_aine (resepti_id integer, raaka_aine_id integer, jarjestys integer, maara varchar(10), lisaohje varchar(255), FOREIGN KEY (raaka_aine_id) REFERENCES Raaka_aine(id), FOREIGN KEY (resepti_id) REFERENCES Resepti(id));");
     
 }
