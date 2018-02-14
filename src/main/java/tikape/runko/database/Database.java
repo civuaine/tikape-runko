@@ -46,5 +46,30 @@ public class Database {
         lista.add("CREATE TABLE ReseptiKategoria (resepti_id integer, kategoria_id integer, FOREIGN KEY (kategoria_id) REFERENCES Kategoria(id), FOREIGN KEY (resepti_id) REFERENCES Resepti(id));");
         return lista;
     }
+    
+    public void sqliteLisaaTestiDataa() {
+        List<String> lista = new ArrayList<>();
+        //Lisätään testidataa tietokantaan
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kaalilaatikko', 2, 40)");
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");
+        
+        
+        
+        try (Connection conn = getConnection()) {
+            Statement st = conn.createStatement();
+
+            // suoritetaan komennot
+            for (String lause : lista) {
+                System.out.println("Running command >> " + lause);
+                st.executeUpdate(lause);
+            }
+
+        } catch (Throwable t) {
+            // jos tietokantataulu on jo olemassa, ei komentoja suoriteta
+            System.out.println("Error >> " + t.getMessage());
+        }
+    }
 
 }
