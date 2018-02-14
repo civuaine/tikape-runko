@@ -1,7 +1,9 @@
 package tikape.runko;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
@@ -28,24 +30,11 @@ public class Main {
         System.out.println("Hello again world");
         
         get("/", (req, res) -> {
-            HashMap map = new HashMap<>();
-            HashMap reseptit = new HashMap<>();
-            
-            for(Resepti resepti: reseptiDao.findAll()){
-                reseptit.put(resepti.getId(), resepti.getNimi());
-            }
-            
-            map.put("reseptit", reseptit);
-            
-            return new ModelAndView(map, "home");
-        }, new ThymeleafTemplateEngine());
-        
-//        get("/", (req, res) -> {
-//            HashMap map = new HashMap<>();
-//            map.put("viesti", "tervehdys");
-//
-//            return new ModelAndView(map, "index");
-//        }, new ThymeleafTemplateEngine());
+            Map<String, Object> model = new HashMap<>();
+            List<Resepti> reseptit = reseptiDao.findAll();
+            model.put("reseptit", reseptit);
+            return render(model, "home");
+        });
 
         get("/opiskelijat", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -60,6 +49,10 @@ public class Main {
 
             return new ModelAndView(map, "opiskelija");
         }, new ThymeleafTemplateEngine());
+    }
+    
+    public static String render(Map<String, Object> model, String templatePath){
+        return new ThymeleafTemplateEngine().render(new ModelAndView(model, templatePath));
     }
     
     public static void AddTestDataReseptit(ReseptiDao reseptiDao, Database database) throws Exception{

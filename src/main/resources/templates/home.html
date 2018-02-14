@@ -14,8 +14,10 @@ and open the template in the editor.
         <h1>Reseptit</h1>
         <ul>
             <li th:each='resepti : ${reseptit}'>
-                <span th:text='${resepti.key}'>id</span>
-                <span th:text='${resepti.value}'>nimi</span>
+                <span th:text='${resepti.id}'>id</span>
+                <span th:text='${resepti.nimi}'>nimi</span>
+                <span th:text='${resepti.luokitus}'>luokitus</span>
+                <span th:text='${resepti.valmistusaika}'>valmistusaika</span>
             </li>
         </ul>
     </body>
