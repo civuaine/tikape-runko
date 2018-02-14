@@ -6,6 +6,7 @@ import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
 import tikape.runko.database.ReseptiDao;
+import tikape.runko.database.OpiskelijaDao;
 
 public class Main {
 
@@ -13,7 +14,7 @@ public class Main {
         Database database = new Database("jdbc:sqlite:opiskelijat.db");
         database.init();
 
-        ReseptiDao opiskelijaDao = new ReseptiDao(database);
+        OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
         
         System.out.println("Hello world");
         System.out.println("Hello again world");
