@@ -5,10 +5,8 @@
  */
 package tikape.runko.util;
 
-/**
- *
- * @author lauri
- */
+
+
 public class Path {
     
     public static class Web {

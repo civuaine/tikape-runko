@@ -17,10 +17,8 @@ import tikape.runko.database.ReseptiDao;
 import tikape.runko.database.OpiskelijaDao;
 import tikape.runko.domain.Resepti;
 
-/**
- *
- * @author lauri
- */
+
+
 public class ViewUtil {
     
     

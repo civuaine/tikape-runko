@@ -53,10 +53,8 @@ public class RecipeDao implements Dao<Recipe, Integer> {
 
     @Override
     public List<Recipe> findAll() throws SQLException {
-        System.out.println("FINDDDDLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
         Connection connection = this.database.getConnection();
-        System.out.println("DATABASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Resepti");
 
         ResultSet rs = stmt.executeQuery();
