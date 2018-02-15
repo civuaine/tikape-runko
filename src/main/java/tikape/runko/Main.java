@@ -66,25 +66,30 @@
 //    }
 //}
 
+package tikape.runko;
+
 import tikape.runko.database.Database;
 import tikape.runko.database.ReseptiDao;
 import tikape.runko.util.Path;
 import tikape.runko.recipe.RecipeController;
 import tikape.runko.recipe.RecipeDao;
 
+
 import spark.*;
+import static spark.Spark.*;
 
 public class Main {
     public static Database database;
-    public static ReseptiDao reseptiDao;
+    public static RecipeController recipeController;
     
     public static void main(String[] args) throws Exception{
         
-        database = new Database("jdbc:sqlite:opiskelijat.db");
-        reseptiDao = new ReseptiDao(database);
         
-        get(Path.Web.RECIPES, RecipeController.fetchAllRecipes);
-        get("/", new Route());
+        
+        database = new Database("jdbc:sqlite:opiskelijat.db");
+        recipeController = new RecipeController(database);
+        
+        get(Path.Web.RECIPES, recipeController.fetchAllRecipes);
         
     }
 }

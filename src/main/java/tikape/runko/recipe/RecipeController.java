@@ -22,8 +22,16 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
  */
 public class RecipeController {
     
-    public Route fetchAllRecipes(Request request, Response response) throws Exception{
-        RecipeDao recipeDao = new RecipeDao(new Database("aa"));
+    public Database database;
+    
+    public RecipeController(Database database){
+        this.database = database;
+    }
+    
+    public Route fetchAllRecipes = (Request request, Response response) -> {
+        System.out.println(this.database.toString());
+        RecipeDao recipeDao = new RecipeDao(this.database);
+        System.out.println("TÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖÖ");
         ViewUtil viewUtil = new ViewUtil();
         
         Map<String, Object> model = new HashMap<>();
@@ -31,6 +39,6 @@ public class RecipeController {
         model.put("reseptit", reseptit);
         return viewUtil.render(model, "home");
         
-    }
+    };
     
 }

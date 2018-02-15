@@ -19,10 +19,10 @@ import tikape.runko.util.ViewUtil;
 public class RecipeDao implements Dao<Recipe, Integer> {
 //public class RecipeDao {
 
-    private static Database database;
+    private Database database;
 
     public RecipeDao(Database database) {
-        database = database;
+        this.database = database;
     }
 
     @Override
@@ -53,8 +53,10 @@ public class RecipeDao implements Dao<Recipe, Integer> {
 
     @Override
     public List<Recipe> findAll() throws SQLException {
+        System.out.println("FINDDDDLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
-        Connection connection = database.getConnection();
+        Connection connection = this.database.getConnection();
+        System.out.println("DATABASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Resepti");
 
         ResultSet rs = stmt.executeQuery();
