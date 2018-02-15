@@ -44,4 +44,29 @@ public class RecipeController {
         return ViewUtil.render(model, Path.Template.RECIPE);
     };
     
+    public Route serveAddOneRecipePage = (Request request, Response response) -> {
+        Map<String, Object> model = new HashMap<>();
+        model.put("request", request);
+        
+        return ViewUtil.render(model, Path.Template.RECIPE_ADD);
+    };
+    
+    public Route serveIndexPage = (Request request, Response reponse) -> {
+        Map<String, Object> model = new HashMap<>();
+        model.put("request", request);
+        
+        return ViewUtil.render(model, Path.Template.INDEX);
+    }
+    
+    public Route addOneRecipe = (Request request, Response response) -> {
+        String nimi = request.queryParams("nimi");
+        Double luokka = Double.parseDouble(request.queryParams("luokka"));
+        Integer valmistusaika = Integer.parseInt(request.queryParams("valmistusaika"));
+        
+        this.recipeDao.addOne(nimi, luokka, valmistusaika);
+        
+        response.redirect(Path.Web.RECIPES);
+        return"";
+    };
+    
 }

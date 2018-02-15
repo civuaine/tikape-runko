@@ -74,6 +74,20 @@ public class RecipeDao implements Dao<Recipe, Integer> {
 
         return reseptit;
     }
+    
+    
+    public void addOne(String nimi, Double luokka, Integer valmistusaika) throws SQLException{
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES (?, ?, ?);");
+        
+        stmt.setString(1, nimi);
+        stmt.setDouble(2, luokka);
+        stmt.setInt(3, valmistusaika);
+        
+        stmt.execute();
+        stmt.close();
+        connection.close();
+    }
 
     @Override
     public void delete(Integer key) throws SQLException {
