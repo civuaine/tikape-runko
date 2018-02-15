@@ -14,25 +14,26 @@ import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import spark.*;
-import spark.template.thymeleaf.ThymeleafTemplateEngine;
+import tikape.runko.util.Path;
 
 
 public class RecipeController {
     
     public Database database;
+    public RecipeDao recipeDao;
     
     public RecipeController(Database database){
         this.database = database;
+        this.recipeDao = new RecipeDao(this.database);
     }
     
     public Route fetchAllRecipes = (Request request, Response response) -> {
-        RecipeDao recipeDao = new RecipeDao(this.database);
-        ViewUtil viewUtil = new ViewUtil();
         
         Map<String, Object> model = new HashMap<>();
-        List<Recipe> reseptit = recipeDao.findAll();
-        model.put("reseptit", reseptit);
-        return viewUtil.render(model, "home");
+        List<Recipe> reseptit = this.recipeDao.findAll(); //Haetaan kaikki reseptit
+        model.put("reseptit", reseptit); //Tallennetaan kaikki reseptit hakusanalle "reseptit"
+        
+        return ViewUtil.render(model, Path.Template.RECIPES_ALL);
         
     };
     

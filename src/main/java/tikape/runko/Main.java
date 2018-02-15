@@ -86,9 +86,13 @@ public class Main {
         
         
         
-        database = new Database("jdbc:sqlite:opiskelijat.db");
+        database = new Database("jdbc:sqlite:opiskelijat.db"); //Alustetaan Tietokanta
+        
+        // Alustetaan kontrollerit kaikille tietokantaolioille(resepti, raaka-aine ym.)
         recipeController = new RecipeController(database);
         
+        
+        //Listataan kaikki mahdolliset polut
         get(Path.Web.RECIPES, recipeController.fetchAllRecipes);
         
     }

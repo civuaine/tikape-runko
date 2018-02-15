@@ -10,12 +10,14 @@ package tikape.runko.util;
 public class Path {
     
     public static class Web {
+        //Listataan URL osoitteet
         public static final String INDEX = "/index/";
         public static final String RECIPES = "/recipes/";
     }
     
     public static class Template {
-        public static final String RECIPES = "/recipe/all.html";
+        //Listataan HTML mallit
+        public static final String RECIPES_ALL = "/recipe/all";
     }
     
 }
