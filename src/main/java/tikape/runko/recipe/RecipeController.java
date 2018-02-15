@@ -34,7 +34,14 @@ public class RecipeController {
         model.put("reseptit", reseptit); //Tallennetaan kaikki reseptit hakusanalle "reseptit"
         
         return ViewUtil.render(model, Path.Template.RECIPES_ALL);
+    };
+    
+    public Route fetchOneRecipe = (Request request, Response response) -> {
         
+        Map<String, Object> model = new HashMap<>();
+        model.put("resepti", this.recipeDao.findOne(Integer.parseInt(request.params(":id")))); //Napataan Requestin mukana tullut id ja etsitään sitä vastaava resepti
+        
+        return ViewUtil.render(model, Path.Template.RECIPE);
     };
     
 }

@@ -13,11 +13,13 @@ public class Path {
         //Listataan URL osoitteet
         public static final String INDEX = "/index/";
         public static final String RECIPES = "/recipes/";
+        public static final String ONE_RECIPE = "/recipe/:id";
     }
     
     public static class Template {
         //Listataan HTML mallit
         public static final String RECIPES_ALL = "/recipe/all";
+        public static final String RECIPE = "/recipe/one";
     }
     
 }

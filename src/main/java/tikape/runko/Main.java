@@ -94,6 +94,7 @@ public class Main {
         
         //Listataan kaikki mahdolliset polut
         get(Path.Web.RECIPES, recipeController.fetchAllRecipes);
+        get(Path.Web.ONE_RECIPE, recipeController.fetchOneRecipe);
         
     }
 }

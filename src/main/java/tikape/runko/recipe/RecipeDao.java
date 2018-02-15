@@ -74,10 +74,6 @@ public class RecipeDao implements Dao<Recipe, Integer> {
 
         return reseptit;
     }
-    
-    public List<Recipe> findA(){
-        return null;
-    }
 
     @Override
     public void delete(Integer key) throws SQLException {
