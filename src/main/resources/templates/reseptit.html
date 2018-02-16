@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reseptit</title>
+    </head>
+    <body>
+
+        <h2>Reseptit</h2>
+
+        <ul>
+            <li th:each='resepti : ${reseptit}'>
+                <span th:text='${resepti.id}'>id</span>
+                <span th:text='${resepti.nimi}'>nimi</span>
+                <span th:text='${resepti.luokitus}'>luokitus</span>
+                <span th:text='${resepti.valmistusaika}'>valmistusaika</span>
+            </li>
+        </ul>
+
+
+        <h4>Lisää uusi</h4>
+
+        <form method="POST" action="">
+            Reseptin nimi:<br/>
+            <input type="text" name="aine"/><br/>
+            <input type="submit" value="Lisää"/>
+            
+            
+        </form>
+
+        <h4>Lisää raaka-aineita</h4>
+
+        <form method="POST" action="">
+
+            Reseptin nimi:<br/>
+            <select name="resepti">
+                <option th:each='resepti : ${reseptit}' th:value='${resepti.id}' th:text='${resepti.nimi}'></option>
+            </select>
+            <br/>
+            
+            Lisättävä raaka-aine<br/>
+            <select name="raakaAine">
+                <option name="1">Tähän pitäis varmaan jotain</option>
+            </select>
+            <br/>
+            Järjestys<br/>
+            <input type="text"/><br/>
+            Määrä<br/>
+            <input type="text"/><br/>
+            Ohje<br/>
+            <input type="text"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+
+        <ul>
+            <li>
+                <a href="../">Etusivulle</a>
+            </li>
+        </ul>
+    </body>
+</html>

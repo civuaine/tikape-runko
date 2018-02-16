@@ -35,6 +35,14 @@ public class Main {
             model.put("reseptit", reseptit);
             return render(model, "home");
         });
+        
+        // Reseptilistaus ja uusien reseptien lisäys
+        get("/reseptit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Resepti> reseptit = reseptiDao.findAll();
+            model.put("reseptit", reseptit);
+            return new ModelAndView(model, "reseptit");
+        }, new ThymeleafTemplateEngine());
 
         get("/opiskelijat", (req, res) -> {
             HashMap map = new HashMap<>();
