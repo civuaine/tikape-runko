@@ -8,13 +8,13 @@ public class Path {
         //Listataan URL osoitteet
         public static final String INDEX = "/";
         public static final String RECIPES = "/recipes/";
-        public static final String ONE_RECIPE = "/recipe/:id";
-        public static final String ADD_RECIPE = "/recipe/add/";
+        public static final String ADD_RECIPE = "/recipes/add/";
+        public static final String ONE_RECIPE = "/recipes/:id/";
     }
     
     public static class Api {
         //Listataan API osoitteet
-        public static final String ADD_RECIPE = "api/recipe/add";
+        public static final String ADD_RECIPE = "api/recipe/add/";
     }
     
     public static class Template {

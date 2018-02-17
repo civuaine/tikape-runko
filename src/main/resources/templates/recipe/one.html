@@ -16,6 +16,6 @@ and open the template in the editor.
         <span th:text='${resepti.nimi}'>nimi</span>
         <span th:text='${resepti.luokitus}'>luokitus</span>
         <span th:text='${resepti.valmistusaika}'>valmistusaika</span>
-        <a href='http://localhost:4567/'>Takaisin etusivulle</a>
+        <a th:href='${INDEX}'>Takaisin etusivulle</a>
     </body>
 </html>

@@ -14,7 +14,7 @@ and open the template in the editor.
         <h1>Reseptit</h1>
         <ul>
             <li th:each='resepti : ${reseptit}'><!--Loopataan listan läpi joka löytyy hakusanalla "resepti"-->
-                <a th:href="@{'~/recipe/' + ${resepti.id}}">
+                <a th:href="${RECIPES}+${resepti.id}">
                     <span th:text='${resepti.id}'>id</span>
                     <span th:text='${resepti.nimi}'>nimi</span>
                     <span th:text='${resepti.luokitus}'>luokitus</span>

@@ -2,6 +2,7 @@ package tikape.runko;
 
 import tikape.runko.database.Database;
 import tikape.runko.util.Path;
+import tikape.runko.util.Filters;
 import tikape.runko.recipe.RecipeController;
 
 
@@ -20,12 +21,14 @@ public class Main {
         // Alustetaan kontrollerit kaikille tietokantaolioille(resepti, raaka-aine ym.)
         recipeController = new RecipeController(database);
         
+        before("*", Filters.addTrailingSlashes); //Kaikkien URL osoitteiden perään laitetaan nyt "/" jos sitä ei jo ole.
+        
         
         //Listataan kaikki mahdolliset polut
         get(Path.Web.INDEX, recipeController.serveIndexPage);
         get(Path.Web.RECIPES, recipeController.fetchAllRecipes);
-        get(Path.Web.ONE_RECIPE, recipeController.fetchOneRecipe);
         get(Path.Web.ADD_RECIPE, recipeController.serveAddOneRecipePage);
+        get(Path.Web.ONE_RECIPE, recipeController.fetchOneRecipe);
         
         
         //API osoitteet ovat sellaisia joita käyttäjä ei näe. Niitä käytetään jonkin ohjelman sisäisen toiminnan toteuttamiseen esim. lisäämiseen tai poistamiseen
