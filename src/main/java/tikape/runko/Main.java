@@ -97,6 +97,7 @@ public class Main {
         get(Path.Web.RECIPES, recipeController.fetchAllRecipes);
         get(Path.Web.ONE_RECIPE, recipeController.fetchOneRecipe);
         get(Path.Web.ADD_RECIPE, recipeController.serveAddOneRecipePage);
+        
         post(Path.Api.ADD_RECIPE, recipeController.addOneRecipe);
         
     }

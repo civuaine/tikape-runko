@@ -56,7 +56,7 @@ public class RecipeController {
         model.put("request", request);
         
         return ViewUtil.render(model, Path.Template.INDEX);
-    }
+    };
     
     public Route addOneRecipe = (Request request, Response response) -> {
         String nimi = request.queryParams("nimi");
