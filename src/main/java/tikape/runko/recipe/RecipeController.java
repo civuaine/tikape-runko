@@ -26,6 +26,8 @@ public class RecipeController {
         List<Recipe> reseptit = this.recipeDao.findAll(); //Haetaan kaikki reseptit
         model.put("reseptit", reseptit); //Tallennetaan kaikki reseptit hakusanalle "reseptit"
         
+        model.put("etusivu_url", Path.Web.INDEX); //Lähetetää avaimlla "etusivu_url" URL etusivulle. Tällä tavalla jos vaihdetaan etusivun URL osoitetta, sitä ei erikseen tarvitse vaihtaa myös täällä
+        
         return ViewUtil.render(model, Path.Template.RECIPES_ALL); //Palautetaan sivu RECIPES_ALL, joka viittaa html tiedostoon recipe/all.html. Viittaus löytyy Path.java tiedostosta
     };
     
