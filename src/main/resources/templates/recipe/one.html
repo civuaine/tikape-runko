@@ -14,17 +14,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     </head>
     <body>
-        <h1>Reseptit</h1>
-        <ul>
-            <li th:each='resepti : ${reseptit}'><!--Loopataan listan läpi joka löytyy hakusanalla "resepti"-->
-                <a th:href="${RECIPES}+${resepti.id}">
-                    <span th:text='${resepti.id}'>id</span>
-                    <span th:text='${resepti.nimi}'>nimi</span>
-                    <span th:text='${resepti.luokitus}'>luokitus</span>
-                    <span th:text='${resepti.valmistusaika}'>valmistusaika</span>
-                </a>
-            </li>
-        </ul>
-        <a th:href='${etusivu_url}'>Takaisin etusivulle</a> <!-- Haetaan etusivun URL osoite -->
+        <h1>Yksi Resepti</h1>
+        <span th:text='${resepti.id}'>id</span>
+        <span th:text='${resepti.nimi}'>nimi</span>
+        <span th:text='${resepti.luokitus}'>luokitus</span>
+        <span th:text='${resepti.valmistusaika}'>valmistusaika</span>
+        <a th:href='${INDEX}'>Takaisin etusivulle</a>
     </body>
 </html>

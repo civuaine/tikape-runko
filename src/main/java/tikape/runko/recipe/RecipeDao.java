@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tikape.runko.recipe;
 
 import java.sql.Connection;
@@ -11,13 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import tikape.runko.recipe.Recipe;
 import tikape.runko.database.Database;
 import tikape.runko.util.Dao;
-import tikape.runko.util.ViewUtil;
 
 public class RecipeDao implements Dao<Recipe, Integer> {
-//public class RecipeDao {
 
     private Database database;
 
