@@ -4,19 +4,19 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html  xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-        <title>Reseptejä</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     </head>
     <body>
-        <h1>Tervetuloa</h1>
-        <br><a th:href='${RECIPES}'>Selaa reseptejä</a></br>
-        <br><a th:href='${lisää_resepti_sivu}'>Lisää resepti</a></br>
-        <br><a th:href='${lisää_raaka_aine_sivu}'> Lisää raaka-aineita</a></br>
+        <h1>Raaka-aine</h1>
+        <span th:text='${raaka_aine.id}'>id</span>
+        <span th:text='${raaka_aine.nimi}'>nimi</span>
+        <a th:href='${INDEX}'>Takaisin etusivulle</a>
     </body>
 </html>

@@ -59,7 +59,7 @@ public class RecipeController {
         
         model.put("RECIPES", Path.Web.RECIPES);
         model.put("lisää_resepti_sivu", Path.Web.ADD_RECIPE);
-        
+        model.put("lisää_raaka_aine_sivu", Path.Web.ADD_INGREDIENT);
         return ViewUtil.render(model, Path.Template.INDEX);
     };
     

@@ -10,6 +10,7 @@ public class Database {
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
+        sqliteLisaaTestiDataa();
     }
 
     public Connection getConnection() throws SQLException {
@@ -46,17 +47,25 @@ public class Database {
         lista.add("CREATE TABLE ReseptiKategoria (resepti_id integer, kategoria_id integer, FOREIGN KEY (kategoria_id) REFERENCES Kategoria(id), FOREIGN KEY (resepti_id) REFERENCES Resepti(id));");
         return lista;
     }
-    
+
     public void sqliteLisaaTestiDataa() {
         List<String> lista = new ArrayList<>();
         //Lisätään testidataa tietokantaan
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
+        /*lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
         lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
         lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kaalilaatikko', 2, 40)");
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");
-        
-        
-        
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");*/
+        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('fetajuusto')");
+        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('jäävuorisalaatti')");
+        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('sipuli')");
+        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('mustapippuri')");
+        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('valkosipuli')");
+        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('ruokakerma')");
+        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+                + "VALUES (4, 4, 1, 200, 'silppuna, paloina, suikaleinta tjtn')");
+        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+                + "VALUES (4, 2, 2, 100, 'lohkoina')");
+
         try (Connection conn = getConnection()) {
             Statement st = conn.createStatement();
 

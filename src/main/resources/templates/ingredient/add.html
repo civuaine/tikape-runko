@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html   xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    </head>
+    <body>
+        
+        <h1>Raaka-aineet</h1>
+        <ul>
+            <li th:each='raaka_aine : ${raaka_aineet}'><!--Loopataan listan läpi joka löytyy hakusanalla "raaka_aine"-->
+                <p th:href="${INGREDIENTS}+${raaka_aine.id}">
+                    <span th:text='${raaka_aine.nimi}'>nimi</span>
+                </p>
+            </li>
+        </ul>
+        
+        <h1>Lisää raaka-aine</h1>
+        <form method='POST' th:action='${lisää_raaka_aine}'>
+            <br><span>Raaka-aineen nimi:</span></br>
+            <br><input type="text" name='nimi'/></br>
+            <input type="submit" name='Lisää raaka-aine'/>
+        </form>
+        
+    </body>
+</html>
