@@ -10,7 +10,6 @@ public class Database {
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
-        sqliteLisaaTestiDataa();
     }
 
     public Connection getConnection() throws SQLException {
@@ -51,10 +50,10 @@ public class Database {
     public void sqliteLisaaTestiDataa() {
         List<String> lista = new ArrayList<>();
         //Lisätään testidataa tietokantaan
-        /*lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
         lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
         lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kaalilaatikko', 2, 40)");
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");*/
+        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");
         lista.add("INSERT INTO Raaka_aine(nimi) VALUES('fetajuusto')");
         lista.add("INSERT INTO Raaka_aine(nimi) VALUES('jäävuorisalaatti')");
         lista.add("INSERT INTO Raaka_aine(nimi) VALUES('sipuli')");
