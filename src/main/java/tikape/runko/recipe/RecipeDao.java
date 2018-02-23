@@ -44,7 +44,7 @@ public class RecipeDao implements Dao<Recipe, Integer> {
     }
     
     // Tämän voi poistaa, jos tietää tavan jolla recipes/add.html "Lisää raaka-aine reseptiin" lomakkeen pudotusvalikosta
-    // saa request.QueryParams haulla palautettua reseptin id:n nimen sijaan.
+    // saa request.QueryParams haulla palautettua reseptin id:n nimen sijaan. (kts. RecipeIngredientController addOne...)
     public Recipe findOneByName(String name) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Resepti WHERE nimi = ?");
