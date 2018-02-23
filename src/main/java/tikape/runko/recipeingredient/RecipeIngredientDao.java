@@ -26,6 +26,7 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
     }
 
     public List<Ingredient> findByRecipe(Integer key) throws SQLException {
+        //Palauttaa listan raaka-aineita joita käytetään tietyssä reseptissä
         Connection connection = this.database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM ReseptiRaaka_aine WHERE resepti_id = ?");
 
@@ -48,6 +49,7 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
     }
 
     public List<Recipe> findByIngredient(Integer key) throws SQLException {
+        //Palauttaa listan reseptejä joissa käytetään tiettyä raaka-ainetta
         Connection connection = this.database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM ReseptiRaaka_aine WHERE raaka_aine_id = ?");
 

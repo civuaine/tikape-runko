@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html   xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:th="http://www.thymeleaf.org" 
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    </head>
+    <body>
+        <h1>Lisää resepti</h1>
+        <form method='POST' th:action='${lisää_resepti}'>
+            <br><span>Reseptin nimi:</span></br>
+            <br><input type="text" name='nimi'/></br>
+            <br><span>Reseptin valmistusaika:</span></br>
+            <br><input type="number" name='valmistusaika'/></br>
+            <input type="submit" name='Lisää resepti'/>
+        </form>
+        <br></br>
+
+        <form method="POST" action="">
+		
+		<h1>Lisää reseptiin raaka-aine</h1>
+            Reseptin nimi:<br/>
+            <select name="resepti">
+                <option th:each='resepti : ${reseptit}' th:value='${resepti.id}' th:text='${resepti.nimi}'></option>
+            </select>
+            <br/>
+
+            Lisättävä raaka-aine<br/>
+            <select name="raakaAine">
+                <option name="1">Raaka-ainelista</option>
+            </select>
+            <br/>
+            Järjestys<br/>
+            <input type="text"/><br/>
+            Määrä<br/>
+            <input type="text"/><br/>
+            Ohje<br/>
+            <input type="text"/><br/>
+            <input type="submit" value="Lisää"/>
+        </form>
+
+
+        <h1>Lisää uusi raaka-aine</h1>
+        <form method='POST' th:action='${lisää_raaka_aine}'>
+            <br><span>Raaka-aineen nimi:</span></br>
+            <br><input type="text" name='nimi'/></br>
+            <input type="submit" name='Lisää raaka-aine'/>
+        </form>
+
+    </body>
+</html>
