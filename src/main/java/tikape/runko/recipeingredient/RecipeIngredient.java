@@ -9,10 +9,10 @@ public class RecipeIngredient {
     private Recipe recipe;
     private Ingredient ingredient;
     private Integer order;
-    private Integer quantity;
+    private String quantity;
     private String instruction;
     
-    public RecipeIngredient(Recipe r, Ingredient i, Integer order, Integer quantity, String info) {
+    public RecipeIngredient(Recipe r, Ingredient i, Integer order, String quantity, String info) {
         this.recipe = r;
         this.ingredient = i;
         this.order = order;
@@ -28,11 +28,11 @@ public class RecipeIngredient {
         this.order = order;
     }
 
-    public Integer getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

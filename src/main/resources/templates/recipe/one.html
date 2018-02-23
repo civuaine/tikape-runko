@@ -14,11 +14,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     </head>
     <body>
-        <h1>Yksi Resepti</h1>
-        <span th:text='${resepti.id}'>id</span>
-        <span th:text='${resepti.nimi}'>nimi</span>
-        <span th:text='${resepti.luokitus}'>luokitus</span>
-        <span th:text='${resepti.valmistusaika}'>valmistusaika</span>
+        <h1>Resepti</h1>
+        <p>ID: <span th:text='${resepti.id}'>id</span> </p>
+        <p>Nimi: <span th:text='${resepti.nimi}'>nimi</span></p>
+        <p>Tähtiluokitus: <span th:text='${resepti.luokitus}'>luokitus</span>/5</p>
+        <p>Valmistusaika: <span th:text='${resepti.valmistusaika}'>valmistusaika</span> minuuttia</p><br/>
         <a th:href='${INDEX}'>Takaisin etusivulle</a>
     </body>
 </html>

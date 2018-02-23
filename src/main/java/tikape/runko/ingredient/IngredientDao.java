@@ -40,7 +40,32 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
 
         return i;
     }
+    
+    // Tämän voi poistaa, jos tietää tavan jolla recipes/add.html "Lisää raaka-aine reseptiin" lomakkeen pudotusvalikosta
+    // saa request.QueryParams haulla palautettua raaka-aineen id:n nimen sijaan.
+    public Ingredient findOneByName(String name) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Raaka_aine WHERE nimi = ?");
+        stmt.setObject(1, name);
 
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Integer id = rs.getInt("id");
+        String nimi = rs.getString("nimi");
+
+        Ingredient i = new Ingredient(id, nimi);
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return i;
+    }
+    
     @Override
     public List<Ingredient> findAll() throws SQLException {
         Connection connection = this.database.getConnection();

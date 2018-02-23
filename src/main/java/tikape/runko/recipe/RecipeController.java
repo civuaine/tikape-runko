@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import spark.*;
+import tikape.runko.Main;
+import tikape.runko.ingredient.Ingredient;
 import tikape.runko.util.Path;
 
 
@@ -45,9 +47,18 @@ public class RecipeController {
     
     public Route serveAddOneRecipePage = (Request request, Response response) -> {
         Map<String, Object> model = new HashMap<>();
-        model.put("request", request); //Ei haluta palauttaa mitään mallia, mutta koska methodi sitä vaatii niin palautetaan jotain turhaa
+        List<Recipe> reseptit = this.recipeDao.findAll();
+        //Seuraaavan voisi toteuttaa varmaan fiksumminkin.
+        //Pitäisikö RecipeControllerille antaa itselleen IngredientController vai toteuttaa jotenkin muuten?
+        List<Ingredient> raaka_aineet = Main.ingredientController.ingredientDao.findAll();
         
+        model.put("request", request); //Ei haluta palauttaa mitään mallia, mutta koska methodi sitä vaatii niin palautetaan jotain turhaa
+        model.put("reseptit", reseptit);
+        model.put("raaka_aineet", raaka_aineet);
+        model.put("etusivu_url", Path.Web.INDEX);
         model.put("lisää_resepti", Path.Api.ADD_RECIPE);
+        //model.put("lisää_reseptiin_raaka_aine", Path.Api.??);
+        model.put("lisää_raaka_aine", Path.Api.ADD_INGREDIENT);
         
         return ViewUtil.render(model, Path.Template.RECIPE_ADD);
     };

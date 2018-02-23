@@ -88,7 +88,7 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
         Recipe r = recipeDao.findOne(rs.getInt("resepti_id"));
         Ingredient i = ingredientDao.findOne(rs.getInt("raaka_aine_id"));
 
-        RecipeIngredient ri = new RecipeIngredient(r, i, rs.getInt("jarjestys"), rs.getInt("maara"), rs.getString("lisaohje"));
+        RecipeIngredient ri = new RecipeIngredient(r, i, rs.getInt("jarjestys"), rs.getString("maara"), rs.getString("lisaohje"));
 
         rs.close();
         stmt.close();
@@ -111,8 +111,7 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
 
             Recipe r = recipeDao.findOne(rs.getInt("resepti_id"));
             Ingredient i = ingredientDao.findOne(rs.getInt("raaka_aine_id"));
-
-            RecipeIngredient ri = new RecipeIngredient(r, i, rs.getInt("jarjestys"), rs.getInt("maara"), rs.getString("lisaohje"));
+            RecipeIngredient ri = new RecipeIngredient(r, i, rs.getInt("jarjestys"), rs.getString("maara"), rs.getString("lisaohje"));
 
             reseptiAinekset.add(ri);
         }
@@ -122,6 +121,25 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
         connection.close();
 
         return reseptiAinekset;
+    }
+
+    public void addOne(String resepti, String raaka_aine, Integer jarjestys, String maara, String lisaohje) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+                + "VALUES (?, ?, ?, ?, ?);");
+
+        Recipe r = this.recipeDao.findOneByName(resepti);
+        Ingredient i = this.ingredientDao.findOneByName(raaka_aine);
+
+        stmt.setInt(1, r.getId());
+        stmt.setInt(2, i.getId());
+        stmt.setInt(3, jarjestys);
+        stmt.setString(4, maara);
+        stmt.setString(5, lisaohje);
+
+        stmt.execute();
+        stmt.close();
+        connection.close();
     }
 
     @Override

@@ -30,8 +30,8 @@ and open the template in the editor.
             Reseptin nimi:<br/>
             <input type="text" name="aine"/><br/>
             <input type="submit" value="Lisää"/>
-            
-            
+
+
         </form>
 
         <h4>Lisää raaka-aineita</h4>
@@ -43,8 +43,9 @@ and open the template in the editor.
                 <option th:each='resepti : ${reseptit}' th:value='${resepti.id}' th:text='${resepti.nimi}'></option>
             </select>
             <br/>
-            
+
             Lisättävä raaka-aine<br/>
+            Reseptin nimi:<br/>
             <select name="raakaAine">
                 <option name="1">Tähän pitäis varmaan jotain</option>
             </select>
