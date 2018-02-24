@@ -92,13 +92,13 @@ public class RecipeDao implements Dao<Recipe, Integer> {
     }
     
     
-    public void addOne(String nimi, Double luokka, Integer valmistusaika) throws SQLException{
+    public void addOne(String nimi, Integer valmistusaika, String ohje) throws SQLException{
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES (?, ?, ?);");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Resepti(nimi, valmistusaika, ohje) VALUES (?, ?, ?);");
         
         stmt.setString(1, nimi);
-        stmt.setDouble(2, luokka);
-        stmt.setInt(3, valmistusaika);
+        stmt.setInt(2, valmistusaika);
+        stmt.setString(3, ohje);
         
         stmt.execute();
         stmt.close();

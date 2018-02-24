@@ -9,6 +9,7 @@ import java.util.HashMap;
 import spark.*;
 import tikape.runko.Main;
 import tikape.runko.ingredient.Ingredient;
+import tikape.runko.category.*;
 import tikape.runko.util.Path;
 
 
@@ -51,12 +52,14 @@ public class RecipeController {
         //Seuraaavan voisi toteuttaa varmaan fiksumminkin.
         //Pitäisikö RecipeControllerille antaa itselleen IngredientController vai toteuttaa jotenkin muuten?
         List<Ingredient> raaka_aineet = Main.ingredientController.ingredientDao.findAll();
+        List<Category> kategoriat = Main.categoryDao.findAll();
         
         model.put("request", request); //Ei haluta palauttaa mitään mallia, mutta koska methodi sitä vaatii niin palautetaan jotain turhaa
         model.put("reseptit", reseptit);
         model.put("raaka_aineet", raaka_aineet);
         model.put("etusivu_url", Path.Web.INDEX);
         model.put("lisää_resepti", Path.Api.ADD_RECIPE);
+        model.put("kategoriat", kategoriat);
         //model.put("lisää_reseptiin_raaka_aine", Path.Api.??);
         model.put("lisää_raaka_aine", Path.Api.ADD_INGREDIENT);
         
@@ -76,10 +79,30 @@ public class RecipeController {
     
     public Route addOneRecipe = (Request request, Response response) -> {
         String nimi = request.queryParams("nimi"); //Napataan pyynnön mukana tullut arvo, joka löytyy avaimella "nimi"
-        Double luokka = Double.parseDouble(request.queryParams("luokka"));
         Integer valmistusaika = Integer.parseInt(request.queryParams("valmistusaika"));
+        String ohje = request.queryParams("ohje");
+        String[] raaka_aineet = request.queryParamsValues("raaka-aine");
+        String[] maarat = request.queryParamsValues("maara");
+        String[] kategoriat = request.queryParamsValues("kategoria");
         
-        this.recipeDao.addOne(nimi, luokka, valmistusaika);
+        System.out.println("NIMI: " + nimi);
+        System.out.println("VALMISTUSAIKA: " + valmistusaika);
+        System.out.println("OHJE: " + ohje);
+        
+        for(String raaka_aine : raaka_aineet){
+            System.out.println("RAAKA-AINE: " + raaka_aine);
+        }
+        
+        for(String maara : maarat){
+            System.out.println("MAARA: " + maara);
+        }
+        
+        for(String kategoria : kategoriat){
+            System.out.println("KATEGORIA: " + kategoria);
+        }
+        
+        
+        this.recipeDao.addOne(nimi, valmistusaika, ohje);
         
         response.redirect(Path.Web.RECIPES); //Uudelleen ohjataan käyttäjä
         return""; //Tämä ei ikinä toteudu

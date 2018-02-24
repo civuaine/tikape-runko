@@ -13,18 +13,30 @@ and open the template in the editor.
         <form method='POST' th:action='@{~/{url}(url=${lisää_resepti})}'>
             <br><span>Reseptin nimi:</span></br>
             <br><input type='text' name='nimi'/></br>
-            <br><span>Reseptin luokitus:</span></br>
-            <br><input type='number' name='luokka'/></br>
 
             
-            <div th:replace="recipe/datalist :: datalist">
+            <br><div th:replace="recipe/datalist :: datalist">
                 
-            </div>
+            </div></br>
             
+            
+            <br>
+            <fieldset>
+                <legend>Valitse Kategoriat</legend>
+                <div th:each="kategoria : ${kategoriat}">
+                    <input type="checkbox" name="kategoria" th:value="${kategoria.id}"/>
+                    <span th:text="${kategoria.nimi}">Kategoria</span>
+                </div>
+            </fieldset>
+            </br>
 
 
             <br><span>Reseptin valmistusaika:</span></br>
             <br><input type='number' name='valmistusaika'/></br>
+            
+            <br><span>Reseptin Ohje</span></br>
+            <br><textarea name='ohje' rows="5" cols="32"/></br>
+            
             <input type='submit' name='Lisää resepti'/>
         </form>
 

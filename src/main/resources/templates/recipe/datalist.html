@@ -13,12 +13,13 @@ and open the template in the editor.
     <body>
         <div th:fragment="datalist">
             <script>
+//                Kun painaa "addRowButton" nappia niin se lisää uuden rivin "reseptiTable" pöytään.
                 $(document).ready(function() {
                     var addRow = function(){
                         $('#reseptiTable').append('<tr><th><input list="raaka-aineet" name="raaka-aine"/>'+
                         '<datalist id="raaka-aineet">'+
                             '<option th:each="raaka_aine : ${raaka_aineet}" th:value="${raaka_aine.nimi}"/>'+
-                        '</datalist></th><th><input type="number" name="maara"/></th></tr>');
+                        '</datalist></th><th><input type="text" name="maara"/></th></tr>');
                     };
                     $('#addRowButton').click(function(){
                         addRow();
@@ -29,7 +30,7 @@ and open the template in the editor.
             <table id="reseptiTable">
                 <tr>
                     <th>
-                        Raaka-aine
+                        Raaka-aine (Valitse listasta tai lisää uusi)
                     </th>
                     <th>
                         Määrä
@@ -43,7 +44,7 @@ and open the template in the editor.
                         </datalist>
                     </th>
                     <th>
-                        <input type='number' name='maara'/>
+                        <input type='text' name='maara'/>
                     </th>
                 </tr>
             </table>

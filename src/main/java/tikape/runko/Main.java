@@ -8,11 +8,13 @@ import tikape.runko.recipe.RecipeController;
 
 import static spark.Spark.*;
 import tikape.runko.ingredient.IngredientController;
+import tikape.runko.category.*;
 
 public class Main {
     public static Database database;
     public static RecipeController recipeController;
     public static IngredientController ingredientController;
+    public static CategoryDao categoryDao;
     
     public static void main(String[] args) throws Exception{
         
@@ -20,11 +22,12 @@ public class Main {
         
         database = new Database("jdbc:sqlite:tietokanta.db"); //Alustetaan Tietokanta
 //        database.init();
-        database.sqliteLisaaTestiDataa();
+//        database.sqliteLisaaTestiDataa();
         
         // Alustetaan kontrollerit kaikille tietokantaolioille(resepti, raaka-aine ym.)
         recipeController = new RecipeController(database);
         ingredientController = new IngredientController(database);
+        categoryDao = new CategoryDao(database);
         
         before("*", Filters.addTrailingSlashes); //Kaikkien URL osoitteiden perään laitetaan nyt "/" jos sitä ei jo ole.
         
