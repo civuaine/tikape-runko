@@ -25,7 +25,7 @@ and open the template in the editor.
                 <legend>Valitse Kategoriat</legend>
                 <div th:each="kategoria : ${kategoriat}">
                     <input type="checkbox" name="kategoria" th:value="${kategoria.id}"/>
-                    <span th:text="${kategoria.nimi}">Kategoria</span>
+                    <span th:text="${#strings.capitalize(kategoria.nimi)}">Kategoria</span>
                 </div>
             </fieldset>
             </br>

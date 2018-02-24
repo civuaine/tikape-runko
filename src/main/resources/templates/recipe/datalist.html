@@ -18,7 +18,7 @@ and open the template in the editor.
                     var addRow = function(){
                         $('#reseptiTable').append('<tr><th><input list="raaka-aineet" name="raaka-aine"/>'+
                         '<datalist id="raaka-aineet">'+
-                            '<option th:each="raaka_aine : ${raaka_aineet}" th:value="${raaka_aine.nimi}"/>'+
+                            '<option th:each="raaka_aine : ${raaka_aineet}" th:value="${#strings.capitalize(raaka_aine.nimi)}"/>'+
                         '</datalist></th><th><input type="text" name="maara"/></th></tr>');
                     };
                     $('#addRowButton').click(function(){
@@ -40,7 +40,7 @@ and open the template in the editor.
                     <th>
                         <input list="raaka-aineet" name="raaka-aine"/>
                         <datalist id="raaka-aineet">
-                            <option th:each="raaka_aine : ${raaka_aineet}" th:value="${raaka_aine.nimi}"/>
+                            <option th:each="raaka_aine : ${raaka_aineet}" th:value="${#strings.capitalize(raaka_aine.nimi)}"/>
                         </datalist>
                     </th>
                     <th>

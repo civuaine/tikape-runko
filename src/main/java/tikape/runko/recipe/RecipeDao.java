@@ -92,7 +92,7 @@ public class RecipeDao implements Dao<Recipe, Integer> {
     }
     
     
-    public void addOne(String nimi, Integer valmistusaika, String ohje) throws SQLException{
+    public Integer addOne(String nimi, Integer valmistusaika, String ohje) throws SQLException{
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("INSERT INTO Resepti(nimi, valmistusaika, ohje) VALUES (?, ?, ?);");
         
@@ -101,8 +101,19 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         stmt.setString(3, ohje);
         
         stmt.execute();
+        
+        stmt = connection.prepareStatement("SELECT last_insert_rowid()");
+        ResultSet rs = stmt.executeQuery();
+        
+        Integer recipe_id = 0;
+        while(rs.next()){
+            recipe_id = rs.getInt(1);
+        }
+        
         stmt.close();
         connection.close();
+        
+        return recipe_id;
     }
 
     @Override

@@ -100,16 +100,26 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
         
     }
 
-    void addOne(String nimi) throws SQLException {
+    public Integer addOne(String nimi) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Raaka_Aine(nimi) VALUES (?);");
+        PreparedStatement stmt = connection.prepareStatement("INSERT OR IGNORE INTO Raaka_Aine(nimi) VALUES (?);");
         
-        stmt.setString(1, nimi);
+        stmt.setString(1, nimi.toLowerCase()); //Lisätään kaikki raaka-aineiden nimet pienillä kirjaimilla niin ei tule ongelmia.
         
         stmt.execute();
+        
+        stmt = connection.prepareStatement("SELECT last_insert_rowid()");
+        ResultSet rs = stmt.executeQuery();
+        
+        Integer ingredient_id = 0;
+        while(rs.next()){
+            ingredient_id = rs.getInt(1);
+        }
+        
         stmt.close();
         connection.close();
         
+        return ingredient_id;
     }
 
 }

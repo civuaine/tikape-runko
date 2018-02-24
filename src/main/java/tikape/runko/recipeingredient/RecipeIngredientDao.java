@@ -123,19 +123,18 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
         return reseptiAinekset;
     }
 
-    public void addOne(String resepti, String raaka_aine, Integer jarjestys, String maara, String lisaohje) throws SQLException {
+    public void addOne(Integer resepti_id, Integer raaka_aine_id, Integer jarjestys, String maara) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
-                + "VALUES (?, ?, ?, ?, ?);");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara)"
+                + "VALUES (?, ?, ?, ?);");
 
-        Recipe r = this.recipeDao.findOneByName(resepti);
-        Ingredient i = this.ingredientDao.findOneByName(raaka_aine);
+//        Recipe r = this.recipeDao.findOneByName(resepti);
+//        Ingredient i = this.ingredientDao.findOneByName(raaka_aine);
 
-        stmt.setInt(1, r.getId());
-        stmt.setInt(2, i.getId());
+        stmt.setInt(1, resepti_id);
+        stmt.setInt(2, raaka_aine_id);
         stmt.setInt(3, jarjestys);
         stmt.setString(4, maara);
-        stmt.setString(5, lisaohje);
 
         stmt.execute();
         stmt.close();

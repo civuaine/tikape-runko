@@ -89,12 +89,14 @@ public class RecipeController {
         System.out.println("VALMISTUSAIKA: " + valmistusaika);
         System.out.println("OHJE: " + ohje);
         
-        for(String raaka_aine : raaka_aineet){
-            System.out.println("RAAKA-AINE: " + raaka_aine);
-        }
         
-        for(String maara : maarat){
-            System.out.println("MAARA: " + maara);
+        System.out.println("SEURAAVAKSI LISÄTÄÄN RESEPTI");
+        Integer recipe_id = this.recipeDao.addOne(nimi, valmistusaika, ohje);
+        System.out.println("RESEPTI LISÄTTY");
+        
+        for(int x = 0; x < raaka_aineet.length; x++){
+            Integer ingredient_id = Main.ingredientController.ingredientDao.addOne(raaka_aineet[x]);
+            Main.recipeIngredientDao.addOne(recipe_id, ingredient_id, x, maarat[x]);
         }
         
         for(String kategoria : kategoriat){
@@ -102,7 +104,7 @@ public class RecipeController {
         }
         
         
-        this.recipeDao.addOne(nimi, valmistusaika, ohje);
+        
         
         response.redirect(Path.Web.RECIPES); //Uudelleen ohjataan käyttäjä
         return""; //Tämä ei ikinä toteudu
