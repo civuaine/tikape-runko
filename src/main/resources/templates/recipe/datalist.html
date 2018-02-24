@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="datalist">
+            <script>
+                $(document).ready(function() {
+                    var addRow = function(){
+                        $('#reseptiTable').append('<tr><th><input list="raaka-aineet" name="raaka-aine"/>'+
+                        '<datalist id="raaka-aineet">'+
+                            '<option th:each="raaka_aine : ${raaka_aineet}" th:value="${raaka_aine.nimi}"/>'+
+                        '</datalist></th><th><input type="number" name="maara"/></th></tr>');
+                    };
+                    $('#addRowButton').click(function(){
+                        addRow();
+                    });
+                });
+            </script>
+            <button type="button" id="addRowButton">Lisää raaka-aine</button>
+            <table id="reseptiTable">
+                <tr>
+                    <th>
+                        Raaka-aine
+                    </th>
+                    <th>
+                        Määrä
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <input list="raaka-aineet" name="raaka-aine"/>
+                        <datalist id="raaka-aineet">
+                            <option th:each="raaka_aine : ${raaka_aineet}" th:value="${raaka_aine.nimi}"/>
+                        </datalist>
+                    </th>
+                    <th>
+                        <input type='number' name='maara'/>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
