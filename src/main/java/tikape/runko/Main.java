@@ -19,7 +19,7 @@ public class Main {
         
         
         database = new Database("jdbc:sqlite:tietokanta.db"); //Alustetaan Tietokanta
-        database.init();
+//        database.init();
         database.sqliteLisaaTestiDataa();
         
         // Alustetaan kontrollerit kaikille tietokantaolioille(resepti, raaka-aine ym.)

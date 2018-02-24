@@ -49,6 +49,13 @@ public class Database {
 
     public void sqliteLisaaTestiDataa() {
         List<String> lista = new ArrayList<>();
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Aamiainen');");
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Lounas');");
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Välipala');");
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Päivällinen');");
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Jälkiruoka');");
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Vegaani');");
+        lista.add("INSERT INTO Kategoria(nimi) VALUES('Gluteeniton');");
         //Lisätään testidataa tietokantaan
 //        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
 //        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
