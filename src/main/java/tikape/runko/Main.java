@@ -18,7 +18,9 @@ public class Main {
         
         
         
-        database = new Database("jdbc:sqlite:opiskelijat.db"); //Alustetaan Tietokanta
+        database = new Database("jdbc:sqlite:tietokanta.db"); //Alustetaan Tietokanta
+        database.init();
+        database.sqliteLisaaTestiDataa();
         
         // Alustetaan kontrollerit kaikille tietokantaolioille(resepti, raaka-aine ym.)
         recipeController = new RecipeController(database);

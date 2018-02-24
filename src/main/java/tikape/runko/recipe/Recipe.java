@@ -4,13 +4,11 @@ public class Recipe {
 
     private Integer id;
     private String nimi;
-    private Double luokitus;
     private Integer valmistusaika;
 
-    public Recipe(Integer id, String nimi, Double luokitus, Integer valmistusaika) {
+    public Recipe(Integer id, String nimi, Integer valmistusaika) {
         this.id = id;
         this.nimi = nimi;
-        this.luokitus = luokitus;
         this.valmistusaika = valmistusaika;
     }
 
@@ -22,16 +20,8 @@ public class Recipe {
         this.id = id;
     }
 
-    public Double getLuokitus() {
-        return luokitus;
-    }
-
     public Integer getValmistusaika() {
         return valmistusaika;
-    }
-
-    public void setLuokitus(Double luokitus) {
-        this.luokitus = luokitus;
     }
 
     public void setValmistusaika(Integer valmistusaika) {

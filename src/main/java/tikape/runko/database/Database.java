@@ -39,9 +39,9 @@ public class Database {
         ArrayList<String> lista = new ArrayList<>();
 
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-        lista.add("CREATE TABLE Resepti (id integer PRIMARY KEY, nimi varchar(255), luokitus double, valmistusaika integer);");
+        lista.add("CREATE TABLE Resepti (id integer PRIMARY KEY, nimi varchar(255), valmistusaika integer, ohje varchar(1024));");
         lista.add("CREATE TABLE Raaka_aine (id integer PRIMARY KEY, nimi varchar(255));");
-        lista.add("CREATE TABLE ReseptiRaaka_aine (resepti_id integer, raaka_aine_id integer, jarjestys integer, maara varchar(10), lisaohje varchar(255), FOREIGN KEY (raaka_aine_id) REFERENCES Raaka_aine(id), FOREIGN KEY (resepti_id) REFERENCES Resepti(id));");
+        lista.add("CREATE TABLE ReseptiRaaka_aine (resepti_id integer, raaka_aine_id integer, jarjestys integer, maara varchar(255), FOREIGN KEY (raaka_aine_id) REFERENCES Raaka_aine(id), FOREIGN KEY (resepti_id) REFERENCES Resepti(id));");
         lista.add("CREATE TABLE Kategoria (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("CREATE TABLE ReseptiKategoria (resepti_id integer, kategoria_id integer, FOREIGN KEY (kategoria_id) REFERENCES Kategoria(id), FOREIGN KEY (resepti_id) REFERENCES Resepti(id));");
         return lista;
@@ -50,20 +50,20 @@ public class Database {
     public void sqliteLisaaTestiDataa() {
         List<String> lista = new ArrayList<>();
         //Lisätään testidataa tietokantaan
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kaalilaatikko', 2, 40)");
-        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");
-        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('fetajuusto')");
-        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('jäävuorisalaatti')");
-        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('sipuli')");
-        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('mustapippuri')");
-        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('valkosipuli')");
-        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('ruokakerma')");
-        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
-                + "VALUES (4, 4, 1, 200, 'silppuna, paloina, suikaleinta tjtn')");
-        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
-                + "VALUES (4, 2, 2, 100, 'lohkoina')");
+//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
+//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
+//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kaalilaatikko', 2, 40)");
+//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");
+//        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('fetajuusto')");
+//        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('jäävuorisalaatti')");
+//        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('sipuli')");
+//        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('mustapippuri')");
+//        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('valkosipuli')");
+//        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('ruokakerma')");
+//        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+//                + "VALUES (4, 4, 1, 200, 'silppuna, paloina, suikaleinta tjtn')");
+//        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+//                + "VALUES (4, 2, 2, 100, 'lohkoina')");
 
         try (Connection conn = getConnection()) {
             Statement st = conn.createStatement();
