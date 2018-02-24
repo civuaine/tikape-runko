@@ -108,7 +108,8 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
         
         stmt.execute();
         
-        stmt = connection.prepareStatement("SELECT last_insert_rowid()");
+        stmt = connection.prepareStatement("SELECT id FROM Raaka_aine WHERE nimi=(?)");
+        stmt.setString(1, nimi.toLowerCase());
         ResultSet rs = stmt.executeQuery();
         
         Integer ingredient_id = 0;

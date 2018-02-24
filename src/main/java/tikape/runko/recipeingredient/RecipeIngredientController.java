@@ -19,7 +19,7 @@ public class RecipeIngredientController {
         String maara = request.queryParams("määrä");
         String ohje = request.queryParams("ohje");
 
-        this.recipeIngredientDao.addOne(resepti, raaka_aine, jarjestys, maara, ohje);
+//        this.recipeIngredientDao.addOne(resepti, raaka_aine, jarjestys, maara, ohje);
         
         response.redirect(Path.Web.RECIPES); //Uudelleen ohjataan käyttäjä
         return ""; //Tämä ei ikinä toteudu
