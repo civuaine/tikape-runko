@@ -16,14 +16,15 @@ and open the template in the editor.
 //                Kun painaa "addRowButton" nappia niin se lisää uuden rivin "reseptiTable" pöytään.
                 $(document).ready(function() {
                     var addRow = function(){
-                        $('#reseptiTable').append('<tr><th><input list="raaka-aineet" name="raaka-aine"/>'+
+                        $('#reseptiTable').append('<tr><th><input list="raaka-aineet" name="raaka-aine" th:required="required" />'+
                         '<datalist id="raaka-aineet">'+
                             '<option th:each="raaka_aine : ${raaka_aineet}" th:value="${#strings.capitalize(raaka_aine.nimi)}"/>'+
-                        '</datalist></th><th><input type="text" name="maara"/></th></tr>');
+                        '</datalist></th><th><input type="text" name="maara" th:required="required" /></th></tr>');
                     };
                     $('#addRowButton').click(function(){
                         addRow();
                     });
+                    
                 });
             </script>
             <table id="reseptiTable">
@@ -37,13 +38,13 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <th>
-                        <input list="raaka-aineet" name="raaka-aine"/>
+                        <input list="raaka-aineet" name="raaka-aine" th:required="required" />
                         <datalist id="raaka-aineet">
                             <option th:each="raaka_aine : ${raaka_aineet}" th:value="${#strings.capitalize(raaka_aine.nimi)}"/>
                         </datalist>
                     </th>
                     <th>
-                        <input type='text' name='maara'/>
+                        <input type='text' name='maara' th:required="required" />
                     </th>
                 </tr>
             </table>
