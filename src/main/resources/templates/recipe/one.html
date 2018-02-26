@@ -30,7 +30,7 @@ and open the template in the editor.
         <br></br>
         <form method='POST' th:action='@{~/{url}(url=${poista_url})}'>
             <input type="hidden" name="id" th:value="${resepti.id}"/>
-            <input type="submit"/>
+            <input type="submit" value="Poista resepti"/>
         </form>
         
         <a th:href='${INDEX}'>Takaisin etusivulle</a>
