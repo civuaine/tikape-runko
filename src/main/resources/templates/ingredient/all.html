@@ -8,10 +8,8 @@ and open the template in the editor.
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
+    <head th:replace="index/template :: header">
         <title>TODO supply a title</title>
-        <meta charset="UTF-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
     </head>
     
     <body>

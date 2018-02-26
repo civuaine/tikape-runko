@@ -44,7 +44,7 @@ public class Main {
         get(Path.Web.INGREDIENTS, ingredientController.fetchAllIngredients);
         get(Path.Web.ADD_INGREDIENT, ingredientController.serveAddOneIngredientPage);
         get(Path.Web.ONE_INGREDIENT, ingredientController.fetchOneIngredient);
-        
+        get(Path.Web.STATS, ingredientController.serveStatsPage);
         
         //API osoitteet ovat sellaisia joita käyttäjä ei näe. Niitä käytetään jonkin ohjelman sisäisen toiminnan toteuttamiseen esim. lisäämiseen tai poistamiseen
         post(Path.Api.ADD_RECIPE, recipeController.addOneRecipe);

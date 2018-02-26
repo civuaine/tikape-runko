@@ -13,6 +13,7 @@ public class Path {
         public static final String INGREDIENTS = "/ingredients/";
         public static final String ADD_INGREDIENT = "/ingredients/add/";
         public static final String ONE_INGREDIENT = "/ingredients/:id/";
+        public static final String STATS = "/statistics/stats/";
     }
 
     public static class Api {
@@ -31,6 +32,7 @@ public class Path {
         public static final String INGREDIENT = "/ingredient/one";
         public static final String INGREDIENT_ADD = "/ingredient/add";
         public static final String INDEX = "/index/home";
+        public static final String STAT = "/statistics/stats";
     }
 
 }

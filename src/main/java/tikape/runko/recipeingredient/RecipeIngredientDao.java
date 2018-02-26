@@ -70,6 +70,24 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
 
         return recipes;
     }
+    
+    public Integer findCountByIngredient(Integer key) throws SQLException {
+        //Palauttaa listan reseptejä joissa käytetään tiettyä raaka-ainetta
+        Connection connection = this.database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM ReseptiRaaka_aine WHERE raaka_aine_id = ?");
+
+        stmt.setInt(1, key);
+
+        ResultSet rs = stmt.executeQuery();
+        
+        int count = rs.getInt(1);
+        
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return count;
+    }
 
     @Override
     public RecipeIngredient findOne(Integer key) throws SQLException {
