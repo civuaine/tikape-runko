@@ -99,10 +99,6 @@ public class RecipeController {
             Main.recipeIngredientDao.addOne(recipe_id, ingredient_id, x, maarat[x]);
         }
         
-        for(String kategoria : kategoriat){
-            System.out.println("KATEGORIA: " + kategoria);
-        }
-        
         
         
         

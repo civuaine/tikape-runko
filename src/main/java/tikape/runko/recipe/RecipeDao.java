@@ -32,8 +32,9 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
         Integer valmistusaika = rs.getInt("valmistusaika");
+        String ohje = rs.getString("ohje");
 
-        Recipe r = new Recipe(id, nimi, valmistusaika);
+        Recipe r = new Recipe(id, nimi, valmistusaika, ohje);
 
         rs.close();
         stmt.close();
@@ -58,8 +59,9 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
         Integer valmistusaika = rs.getInt("valmistusaika");
+        String ohje = rs.getString("ohje");
 
-        Recipe r = new Recipe(id, nimi, valmistusaika);
+        Recipe r = new Recipe(id, nimi, valmistusaika, ohje);
 
         rs.close();
         stmt.close();
@@ -80,8 +82,9 @@ public class RecipeDao implements Dao<Recipe, Integer> {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
             Integer valmistusaika = rs.getInt("valmistusaika");
+            String ohje = rs.getString("ohje");
 
-            reseptit.add(new Recipe(id, nimi, valmistusaika));
+            reseptit.add(new Recipe(id, nimi, valmistusaika, ohje));
         }
 
         rs.close();
