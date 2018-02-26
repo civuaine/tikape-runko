@@ -18,6 +18,7 @@ public class Path {
     public static class Api {
         //Listataan API osoitteet
         public static final String ADD_RECIPE = "api/recipe/add/";
+        public static final String DELETE_RECIPE = "api/recipe/delete/";
         public static final String ADD_INGREDIENT = "api/ingredient/add/";
     }
 

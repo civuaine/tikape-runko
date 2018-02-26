@@ -40,7 +40,12 @@ public class RecipeController {
         model.put("resepti", this.recipeDao.findOne(Integer.parseInt(request.params(":id")))); //Napataan Requestin mukana tullut id ja etsitään sitä vastaava resepti
 
         model.put("INDEX", Path.Web.INDEX);
+<<<<<<< HEAD
 
+=======
+        model.put("poista_url", Path.Api.DELETE_RECIPE);
+        
+>>>>>>> yksi_resepti
         return ViewUtil.render(model, Path.Template.RECIPE);
     };
 
@@ -51,8 +56,12 @@ public class RecipeController {
         //Pitäisikö RecipeControllerille antaa itselleen IngredientController vai toteuttaa jotenkin muuten?
         List<Ingredient> raaka_aineet = Main.ingredientController.ingredientDao.findAll();
         List<Category> kategoriat = Main.categoryDao.findAll();
+<<<<<<< HEAD
 
         model.put("request", request); //Ei haluta palauttaa mitään mallia, mutta koska methodi sitä vaatii niin palautetaan jotain turhaa
+=======
+        
+>>>>>>> yksi_resepti
         model.put("reseptit", reseptit);
         model.put("raaka_aineet", raaka_aineet);
         model.put("etusivu_url", Path.Web.INDEX);
@@ -100,9 +109,29 @@ public class RecipeController {
             Integer ingredient_id = Main.ingredientController.ingredientDao.addOne(raaka_aineet[x]);
             Main.recipeIngredientDao.addOne(recipe_id, ingredient_id, x, maarat[x]);
         }
+<<<<<<< HEAD
 
+=======
+        
+        
+        
+        
+>>>>>>> yksi_resepti
         response.redirect(Path.Web.RECIPES); //Uudelleen ohjataan käyttäjä
         return ""; //Tämä ei ikinä toteudu
     };
+<<<<<<< HEAD
 
+=======
+    
+    public Route deleteRecipe = (Request request, Response response) -> {
+
+        
+        this.recipeDao.delete(Integer.parseInt(request.queryParams("id")));
+        response.redirect(Path.Web.RECIPES);
+        
+        return "";
+    };
+    
+>>>>>>> yksi_resepti
 }
