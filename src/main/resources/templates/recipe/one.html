@@ -19,6 +19,14 @@ and open the template in the editor.
         <p>Valmistusaika: <span th:text='${resepti.valmistusaika}'>valmistusaika</span> minuuttia</p><br/>
         <p>Ohje: <span th:text='${resepti.ohje}'>valmistusaika</span> ohje</p><br/>
         
+        
+        
+        <br></br>
+        <form method='POST' th:action='@{~/{url}(url=${poista_url})}'>
+            <input type="hidden" name="id" th:value="${resepti.id}"/>
+            <input type="submit"/>
+        </form>
+        
         <a th:href='${INDEX}'>Takaisin etusivulle</a>
     </body>
 </html>

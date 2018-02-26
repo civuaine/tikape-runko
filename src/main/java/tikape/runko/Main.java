@@ -48,6 +48,7 @@ public class Main {
         
         //API osoitteet ovat sellaisia joita käyttäjä ei näe. Niitä käytetään jonkin ohjelman sisäisen toiminnan toteuttamiseen esim. lisäämiseen tai poistamiseen
         post(Path.Api.ADD_RECIPE, recipeController.addOneRecipe);
+        post(Path.Api.DELETE_RECIPE, recipeController.deleteRecipe);
         post(Path.Api.ADD_INGREDIENT, ingredientController.addOneIngredient);
     }
 }
