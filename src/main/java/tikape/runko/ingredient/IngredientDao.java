@@ -101,8 +101,14 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
     }
 
     public Integer addOne(String nimi) throws SQLException {
+        
+        if (this.findOneByName(nimi.toLowerCase()) != null) {
+            return this.findOneByName(nimi.toLowerCase()).getId();
+        }
+        
+        
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("INSERT OR UPDATE INTO Raaka_Aine(nimi) VALUES (?);");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO Raaka_Aine(nimi) VALUES (?);");
         
         stmt.setString(1, nimi.toLowerCase()); //Lisätään kaikki raaka-aineiden nimet pienillä kirjaimilla niin ei tule ongelmia.
         
