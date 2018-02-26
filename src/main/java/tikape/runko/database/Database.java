@@ -57,19 +57,19 @@ public class Database {
         lista.add("INSERT INTO Kategoria(nimi) VALUES('Vegaani');");
         lista.add("INSERT INTO Kategoria(nimi) VALUES('Gluteeniton');");
         //Lisätään testidataa tietokantaan
-//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kalakeitto', 1, 20)");
-//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('pinaattikeitto', 1, 15)");
-//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('kaalilaatikko', 2, 40)");
-//        lista.add("INSERT INTO Resepti(nimi, luokitus, valmistusaika) VALUES('tomaattisalaatti', 3, 5)");
+//        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('kalakeitto', 20)");
+//        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('pinaattikeitto', 15)");
+//        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('kaalilaatikko', 40)");
+//        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('tomaattisalaatti', 5)");
 //        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('fetajuusto')");
 //        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('jäävuorisalaatti')");
 //        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('sipuli')");
 //        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('mustapippuri')");
 //        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('valkosipuli')");
 //        lista.add("INSERT INTO Raaka_aine(nimi) VALUES('ruokakerma')");
-//        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+//        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara)"
 //                + "VALUES (4, 4, 1, 200, 'silppuna, paloina, suikaleinta tjtn')");
-//        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara, lisaohje)"
+//        lista.add("INSERT INTO ReseptiRaaka_aine(resepti_id, raaka_aine_id, jarjestys, maara)"
 //                + "VALUES (4, 2, 2, 100, 'lohkoina')");
 
         try (Connection conn = getConnection()) {
