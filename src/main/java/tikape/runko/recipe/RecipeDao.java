@@ -46,7 +46,7 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         
         stmt.setObject(1, key);
         
-        Set<Ingredient> raaka_aineet = new HashSet<>();
+        List<Ingredient> raaka_aineet = new ArrayList<>();
         
         rs = stmt.executeQuery();
         

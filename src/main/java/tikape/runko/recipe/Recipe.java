@@ -11,9 +11,9 @@ public class Recipe {
     private String nimi;
     private Integer valmistusaika;
     private String ohje;
-    private Set<Ingredient> raaka_aineet;
+    private List<Ingredient> raaka_aineet;
 
-    public Recipe(Integer id, String nimi, Integer valmistusaika, String ohje, Set<Ingredient> raaka_aineet) {
+    public Recipe(Integer id, String nimi, Integer valmistusaika, String ohje, List<Ingredient> raaka_aineet) {
         this.id = id;
         this.nimi = nimi;
         this.valmistusaika = valmistusaika;
@@ -53,7 +53,7 @@ public class Recipe {
         this.ohje = ohje;
     }
     
-    public Set<Ingredient> getRaaka_aineet() {
+    public List<Ingredient> getRaaka_aineet() {
         return raaka_aineet;
     }
 
