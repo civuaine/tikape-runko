@@ -131,7 +131,7 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         
         stmt.execute();
         
-        stmt = connection.prepareStatement("SELECT last_insert_rowid()");
+        stmt = connection.prepareStatement("SELECT currval('resepti_id_seq')");
         ResultSet rs = stmt.executeQuery();
         
         Integer recipe_id = 0;
