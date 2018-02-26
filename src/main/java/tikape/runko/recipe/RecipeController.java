@@ -110,6 +110,7 @@ public class RecipeController {
 
         
         this.recipeDao.delete(Integer.parseInt(request.queryParams("id")));
+        Main.recipeIngredientDao.delete(Integer.parseInt(request.queryParams("id")));
         response.redirect(Path.Web.RECIPES);
         
         return "";

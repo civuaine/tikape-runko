@@ -8,7 +8,7 @@ and open the template in the editor.
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
+    <head th:replace="index/template :: header">
         <title>TODO supply a title</title>
         <meta charset="UTF-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
@@ -17,13 +17,16 @@ and open the template in the editor.
         <h1>Resepti</h1>
         <p>Nimi: <span th:text='${resepti.nimi}'>nimi</span></p>
         <p>Valmistusaika: <span th:text='${resepti.valmistusaika}'>valmistusaika</span> minuuttia</p><br/>
-        <p>Ohje: <span th:text='${resepti.ohje}'>valmistusaika</span></p><br/>
-        <br></br>
         
         <p>Raaka-aineet:</p>
         <ul>
             <li th:each="raaka_aine : ${resepti.raaka_aineet}"><span th:text="${raaka_aine.nimi}">Raaka_aine nimi</span>: <span th:text="${raaka_aine.maara}">raaka_aine maara</span></li>
         </ul>
+        
+        <p>Ohje: <span th:text='${resepti.ohje}'>valmistusaika</span></p><br/>
+        <br></br>
+        
+        
         
         
         
