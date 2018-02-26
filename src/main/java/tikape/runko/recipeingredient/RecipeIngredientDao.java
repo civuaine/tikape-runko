@@ -79,8 +79,8 @@ public class RecipeIngredientDao implements Dao<RecipeIngredient, Integer> {
         stmt.setInt(1, key);
 
         ResultSet rs = stmt.executeQuery();
-        
-        int count = rs.getInt(0);
+        rs.next();
+        int count = rs.getInt(1);
         
         rs.close();
         stmt.close();
