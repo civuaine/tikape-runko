@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 import tikape.runko.database.Database;
 import tikape.runko.util.Dao;
+import tikape.runko.ingredient.*;
 
 public class RecipeDao implements Dao<Recipe, Integer> {
 
@@ -33,8 +36,30 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         String nimi = rs.getString("nimi");
         Integer valmistusaika = rs.getInt("valmistusaika");
         String ohje = rs.getString("ohje");
+        
+        stmt.close();
+        
+        stmt = connection.prepareStatement("SELECT * FROM (ReseptiRaaka_aine INNER JOIN Raaka_aine ON ReseptiRaaka_aine.raaka_aine_id = Raaka_aine.id)"
+                + "INNER JOIN Resepti ON ReseptiRaaka_aine.resepti_id = Resepti.id "
+                + "WHERE Resepti.id = ?;");
+        
+        stmt.setObject(1, key);
+        
+        Set<Ingredient> raaka_aineet = new HashSet<>();
+        
+        rs = stmt.executeQuery();
+        
+//        hasOne = rs.next();
+//        if (!hasOne) {
+//            return null;
+//        }
+        
+        while(rs.next()){
+            raaka_aineet.add(new Ingredient(rs.getInt("id"), rs.getString("nimi"), rs.getString("maara")));
+        }
+        
 
-        Recipe r = new Recipe(id, nimi, valmistusaika, ohje);
+        Recipe r = new Recipe(id, nimi, valmistusaika, ohje, raaka_aineet);
 
         rs.close();
         stmt.close();
@@ -45,30 +70,30 @@ public class RecipeDao implements Dao<Recipe, Integer> {
     
     // Tämän voi poistaa, jos tietää tavan jolla recipes/add.html "Lisää raaka-aine reseptiin" lomakkeen pudotusvalikosta
     // saa request.QueryParams haulla palautettua reseptin id:n nimen sijaan. (kts. RecipeIngredientController addOne...)
-    public Recipe findOneByName(String name) throws SQLException {
-        Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Resepti WHERE nimi = ?");
-        stmt.setObject(1, name);
-
-        ResultSet rs = stmt.executeQuery();
-        boolean hasOne = rs.next();
-        if (!hasOne) {
-            return null;
-        }
-
-        Integer id = rs.getInt("id");
-        String nimi = rs.getString("nimi");
-        Integer valmistusaika = rs.getInt("valmistusaika");
-        String ohje = rs.getString("ohje");
-
-        Recipe r = new Recipe(id, nimi, valmistusaika, ohje);
-
-        rs.close();
-        stmt.close();
-        connection.close();
-
-        return r;
-    }
+//    public Recipe findOneByName(String name) throws SQLException {
+//        Connection connection = database.getConnection();
+//        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Resepti WHERE nimi = ?");
+//        stmt.setObject(1, name);
+//
+//        ResultSet rs = stmt.executeQuery();
+//        boolean hasOne = rs.next();
+//        if (!hasOne) {
+//            return null;
+//        }
+//
+//        Integer id = rs.getInt("id");
+//        String nimi = rs.getString("nimi");
+//        Integer valmistusaika = rs.getInt("valmistusaika");
+//        String ohje = rs.getString("ohje");
+//
+//        Recipe r = new Recipe(id, nimi, valmistusaika, ohje);
+//
+//        rs.close();
+//        stmt.close();
+//        connection.close();
+//
+//        return r;
+//    }
 
     @Override
     public List<Recipe> findAll() throws SQLException {
@@ -84,7 +109,7 @@ public class RecipeDao implements Dao<Recipe, Integer> {
             Integer valmistusaika = rs.getInt("valmistusaika");
             String ohje = rs.getString("ohje");
 
-            reseptit.add(new Recipe(id, nimi, valmistusaika, ohje));
+            reseptit.add(new Recipe(id, nimi, valmistusaika, ohje, null));
         }
 
         rs.close();

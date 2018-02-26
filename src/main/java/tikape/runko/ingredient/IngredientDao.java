@@ -32,7 +32,7 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
 
-        Ingredient i = new Ingredient(id, nimi);
+        Ingredient i = new Ingredient(id, nimi, null);
 
         rs.close();
         stmt.close();
@@ -57,7 +57,7 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
 
-        Ingredient i = new Ingredient(id, nimi);
+        Ingredient i = new Ingredient(id, nimi, null);
 
         rs.close();
         stmt.close();
@@ -77,7 +77,7 @@ public class IngredientDao implements Dao<Ingredient, Integer> {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
 
-            raaka_aineet.add(new Ingredient(id, nimi));
+            raaka_aineet.add(new Ingredient(id, nimi, null));
         }
 
         rs.close();

@@ -17,7 +17,13 @@ and open the template in the editor.
         <h1>Resepti</h1>
         <p>Nimi: <span th:text='${resepti.nimi}'>nimi</span></p>
         <p>Valmistusaika: <span th:text='${resepti.valmistusaika}'>valmistusaika</span> minuuttia</p><br/>
-        <p>Ohje: <span th:text='${resepti.ohje}'>valmistusaika</span> ohje</p><br/>
+        <p>Ohje: <span th:text='${resepti.ohje}'>valmistusaika</span></p><br/>
+        <br></br>
+        
+        <p>Raaka-aineet:</p>
+        <ul>
+            <li th:each="raaka_aine : ${resepti.raaka_aineet}"><span th:text="${raaka_aine.nimi}">Raaka_aine nimi</span>: <span th:text="${raaka_aine.maara}">raaka_aine maara</span></li>
+        </ul>
         
         
         

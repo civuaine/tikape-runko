@@ -4,10 +4,12 @@ public class Ingredient {
 
     private Integer id;
     private String nimi;
+    private String maara;
 
-    public Ingredient(Integer id, String nimi) {
+    public Ingredient(Integer id, String nimi, String maara) {
         this.id = id;
         this.nimi = nimi;
+        this.maara = maara;
     }
 
     public Integer getId() {
@@ -24,6 +26,14 @@ public class Ingredient {
 
     public void setNimi(String nimi) {
         this.nimi = nimi;
+    }
+    
+    public String getMaara() {
+        return maara;
+    }
+
+    public void setMaara(String nimi) {
+        this.maara = maara;
     }
 
 }
