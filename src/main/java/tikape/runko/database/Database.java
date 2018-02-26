@@ -13,7 +13,15 @@ public class Database {
     }
 
     public Connection getConnection() throws SQLException {
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        if (dbUrl != null && dbUrl.length() > 0) {
+            return DriverManager.getConnection(dbUrl);
+        }
+
         return DriverManager.getConnection(databaseAddress);
+        
+        
+       // return DriverManager.getConnection(databaseAddress);
     }
 
     public void init() {
@@ -60,7 +68,7 @@ public class Database {
 //        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('kalakeitto', 20)");
 //        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('pinaattikeitto', 15)");
 //        lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('kaalilaatikko', 40)");
- //       lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('tomaattisalaatti', 5)");
+        //       lista.add("INSERT INTO Resepti(nimi, valmistusaika) VALUES('tomaattisalaatti', 5)");
         lista.add("INSERT INTO Raaka_aine(nimi) VALUES('fetajuusto')");
         lista.add("INSERT INTO Raaka_aine(nimi) VALUES('jäävuorisalaatti')");
         lista.add("INSERT INTO Raaka_aine(nimi) VALUES('sipuli')");
