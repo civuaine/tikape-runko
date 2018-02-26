@@ -41,7 +41,8 @@ public class RecipeDao implements Dao<Recipe, Integer> {
         
         stmt = connection.prepareStatement("SELECT * FROM (ReseptiRaaka_aine INNER JOIN Raaka_aine ON ReseptiRaaka_aine.raaka_aine_id = Raaka_aine.id)"
                 + "INNER JOIN Resepti ON ReseptiRaaka_aine.resepti_id = Resepti.id "
-                + "WHERE Resepti.id = ?;");
+                + "WHERE Resepti.id = ? "
+                + "ORDER BY ReseptiRaaka_aine.jarjestys ASC;");
         
         stmt.setObject(1, key);
         
