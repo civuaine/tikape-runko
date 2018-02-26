@@ -10,9 +10,11 @@ and open the template in the editor.
     </head>
     <body>
         <h1>Lisää resepti</h1>
-        <form method='POST' th:action='@{~/{url}(url=${lisää_resepti})}'>
+        
+        
+        <form class="cmxform" id="reseptiForm" method='POST' th:action='@{~/{url}(url=${lisää_resepti})}'>
             <br><span>Reseptin nimi:</span></br>
-            <br><input type='text' name='nimi'/></br>
+            <br><input id='cname' type='text' name='nimi' minlength="3" th:required="required"/></br>
 
             
             <br><div th:replace="recipe/datalist :: datalist">
@@ -32,13 +34,16 @@ and open the template in the editor.
 
 
             <br><span>Reseptin valmistusaika (min):</span></br>
-            <br><input type='number' name='valmistusaika' /></br>
+            <br><input id="cnumber" type='number' name='valmistusaika' min="0" th:required="erquired"/></br>
             
             <br><span>Reseptin Ohje</span></br>
-            <br><textarea name='ohje' rows="5" cols="32"/></br>
+            <br><textarea name='ohje' rows="5" cols="32" th:required="required"/></br>
             
-            <input type='submit' value='Lisää resepti'/>
+            <input id='submit_resepti' type='submit' value='Lisää resepti'/>
         </form>
+        <script>
+            $('#reseptiForm').validate();
+        </script>
 
 
 
