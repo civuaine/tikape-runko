@@ -3,13 +3,13 @@ package tikape.runko.ingredient;
 import java.util.ArrayList;
 import tikape.runko.util.ViewUtil;
 import tikape.runko.database.Database;
+import tikape.runko.util.Path;
 
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import spark.*;
 import tikape.runko.Main;
-import tikape.runko.util.Path;
 
 public class IngredientController {
 
@@ -75,6 +75,7 @@ public class IngredientController {
         }
         
         model.put("raaka_aineet", ing);
+        model.put("etusivu_url", Path.Web.INDEX);
         
         
         return ViewUtil.render(model, Path.Template.STAT);
