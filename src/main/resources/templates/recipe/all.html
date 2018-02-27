@@ -8,18 +8,22 @@ and open the template in the editor.
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head th:replace="index/template :: header">
-        <title>TODO supply a title</title>
+    <head th:replace="index/template :: header (Kaikki)">
+        <title>Reseptejä</title>
     </head>
     <body>
-        <h1>Reseptit</h1>
-        <ul>
-            <li th:each='resepti : ${reseptit}'><!--Loopataan listan läpi joka löytyy hakusanalla "resepti"-->
-                <a th:href="${RECIPES}+${resepti.id}">
-                    <span th:text='${resepti.nimi}'>nimi</span>
-                </a>
-            </li>
-        </ul>
-        <a th:href='${etusivu_url}'>Takaisin etusivulle</a> <!-- Haetaan etusivun URL osoite -->
+        <div>
+            <h1>Reseptit</h1>
+            
+            <ul>
+                <li th:each='resepti : ${reseptit}'><!--Loopataan listan läpi joka löytyy hakusanalla "resepti"-->
+                    <a th:href="${RECIPES}+${resepti.id}">
+                        <span th:text='${#strings.capitalize(resepti.nimi)}'>nimi</span>
+                    </a>
+                </li>
+            </ul>
+            <br></br>
+            <a th:href='${etusivu_url}'>Takaisin etusivulle</a> <!-- Haetaan etusivun URL osoite -->
+        </div>
     </body>
 </html>

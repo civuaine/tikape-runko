@@ -3,13 +3,16 @@ package tikape.runko.ingredient;
 import java.util.ArrayList;
 import tikape.runko.util.ViewUtil;
 import tikape.runko.database.Database;
+import tikape.runko.util.Path;
 
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
+import java.util.stream.Collectors;
+import java.util.Map.Entry;
+import java.util.LinkedHashMap;
 import spark.*;
 import tikape.runko.Main;
-import tikape.runko.util.Path;
 
 public class IngredientController {
 
@@ -74,7 +77,15 @@ public class IngredientController {
             ing.put(raaka_aineet.get(i), Main.recipeIngredientDao.findCountByIngredient(raaka_aineet.get(i).getId()));
         }
         
-        model.put("raaka_aineet", ing);
+        
+        Map<Ingredient, Integer> sortedMap = 
+            ing.entrySet().stream()
+           .sorted(Entry.comparingByValue((e1, e2) -> e2 - e1))
+           .collect(Collectors.toMap(Entry::getKey, Entry::getValue,
+                                     (e1, e2) -> e1, LinkedHashMap::new));
+        
+        model.put("raaka_aineet", sortedMap);
+        model.put("etusivu_url", Path.Web.INDEX);
         
         
         return ViewUtil.render(model, Path.Template.STAT);

@@ -6,9 +6,6 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div th:fragment="datalist">
@@ -16,10 +13,10 @@ and open the template in the editor.
 //                Kun painaa "addRowButton" nappia niin se lisää uuden rivin "reseptiTable" pöytään.
                 $(document).ready(function() {
                     var addRow = function(){
-                        $('#reseptiTable').append('<tr><th><input list="raaka-aineet" name="raaka-aine" th:required="required" />'+
+                        $('#reseptiTable').append('<tr><td><input list="raaka-aineet" maxlength="254" name="raaka-aine" th:required="required" />'+
                         '<datalist id="raaka-aineet">'+
                             '<option th:each="raaka_aine : ${raaka_aineet}" th:value="${#strings.capitalize(raaka_aine.nimi)}"/>'+
-                        '</datalist></th><th><input type="text" name="maara" th:required="required" /></th></tr>');
+                        '</datalist></td><td><input type="text" name="maara" maxlength="254" th:required="required" /></td></tr>');
                     };
                     $('#addRowButton').click(function(){
                         addRow();
@@ -29,26 +26,27 @@ and open the template in the editor.
             </script>
             <table id="reseptiTable">
                 <tr>
-                    <th>
+                    <th class="leftCol">
                         Raaka-aine (Valitse listasta tai lisää uusi)
                     </th>
-                    <th>
+                    <th class="rightCol">
                         Määrä
                     </th>
                 </tr>
                 <tr>
-                    <th>
-                        <input list="raaka-aineet" name="raaka-aine" th:required="required" />
+                    <td class="leftCol">
+                        <input list="raaka-aineet" name="raaka-aine" maxlength="254" th:required="required" />
                         <datalist id="raaka-aineet">
                             <option th:each="raaka_aine : ${raaka_aineet}" th:value="${#strings.capitalize(raaka_aine.nimi)}"/>
                         </datalist>
-                    </th>
-                    <th>
-                        <input type='text' name='maara' th:required="required" />
-                    </th>
+                    </td>
+                    <td class="rightCol">
+                        <input type='text' name='maara' maxlength="254" th:required="required" />
+                    </td>
                 </tr>
             </table>
-            <button type="button" id="addRowButton">Lisää raaka-aine</button>
+            <br></br>
+            <button type="button" id="addRowButton">Lisää uusi raaka-aine</button>
         </div>
     </body>
 </html>

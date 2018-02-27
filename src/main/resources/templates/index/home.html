@@ -8,14 +8,16 @@ and open the template in the editor.
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head th:replace="index/template :: header">
+    <head th:replace="index/template :: header (Reseptejä)">
         <title>Reseptejä</title>
     </head>
     <body>
-        <h1>Tervetuloa</h1>
-        <br><a th:href='${RECIPES}'>Selaa reseptejä</a></br>
-        <br><a th:href='${lisää_resepti_sivu}'>Lisää resepti</a></br>
-        <br><a th:href='${lisää_raaka_aine_sivu}'> Lisää raaka-aineita</a></br>
-        <br><a th:href='${STATS}'>Statistiikka</a></br>
+        <div>
+            <h1>Tervetuloa</h1>
+            <br><a th:href='${RECIPES}'>Selaa reseptejä</a></br>
+            <br><a th:href='${lisää_resepti_sivu}'>Lisää resepti</a></br>
+            <br><a th:href='${lisää_raaka_aine_sivu}'> Lisää raaka-aineita</a></br>
+            <br><a th:href='${STATS}'>Statistiikka</a></br>
+        </div>
     </body>
 </html>

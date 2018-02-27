@@ -3,18 +3,43 @@
     xmlns:th="http://www.thymeleaf.org" 
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head th:replace="index/template :: header">
+    <head th:replace="index/template :: header (Statistiikkaa)">
         <title>TODO supply a title</title>
     </head>
     <body>
-        <ul>
-            <li th:each='raaka_aine : ${raaka_aineet}'>
-                <span th:text='${raaka_aine.key.nimi}'>nimi</span>
-                esiintyy
-                <span th:text='${raaka_aine.value}'>count</span>
-                reseptissä
-            </li>
-        </ul>
-        
+        <div>
+            <h1>Statistiikkaa raaka-aineista</h1>
+            
+            <table id="raaka-aineet">
+                <tr>
+                    <th>
+                        Raaka-aine
+                    </th>
+                    <th>
+                        Esiintyy resepteissä (n monta kertaa)
+                    </th>
+                </tr>
+                <tr th:each='raaka_aine : ${raaka_aineet}'>
+                    <td th:text='${#strings.capitalize(raaka_aine.key.nimi)}'>
+                        nimi
+                    </td>
+                    <td id="Center" th:text='${raaka_aine.value}'>
+                        value
+                    </td>
+                </tr>
+    <!--        <ul>
+                <li th:each='raaka_aine : ${raaka_aineet}'>
+                    <span th:text='${raaka_aine.key.nimi}'>nimi</span>
+                    esiintyy
+                    <span th:text='${raaka_aine.value}'>count</span>
+                    reseptissä
+                </li>
+            </ul>-->
+
+            </table>
+            
+            <br></br>
+            <div th:replace="index/template :: footer"></div>
+        </div>
     </body>
 </html>

@@ -5,48 +5,54 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head th:replace="index/template :: header">
-        <title>Reseptit</title>
+    <head th:replace="index/template :: header (Lisää)">
+        <title>Lisää Resepti</title>
     </head>
     <body>
-        <h1>Lisää resepti</h1>
-        
-        
-        <form class="cmxform" id="reseptiForm" method='POST' th:action='@{~/{url}(url=${lisää_resepti})}'>
-            <br><span>Reseptin nimi:</span></br>
-            <br><input id='cname' type='text' name='nimi' minlength="3" th:required="required"/></br>
+        <div>
+            <h1>Lisää resepti</h1>
 
+
+            <form class="cmxform" id="reseptiForm" method='POST' th:action='@{~/{url}(url=${lisää_resepti})}'>
+                <br><span>Reseptin nimi:</span></br>
+                <br><input id='cname' type='text' name='nimi' minlength="3" maxlength="254" th:required="required"/></br>
+
+
+                <br><div th:replace="recipe/datalist :: datalist">
+
+                </div></br>
+
+
+                <br>
+                <!--<fieldset>-->
+                    <!--<legend>Valitse Kategoriat</legend>-->
+                    <ul>
+                        <li th:each="kategoria : ${kategoriat}">
+                            <input type="checkbox" name="kategoria" th:value="${kategoria.id}"/>
+                            <span th:text="${#strings.capitalize(kategoria.nimi)}">Kategoria</span>
+                        </li>
+                    </ul>
+                <!--</fieldset>-->
+                </br>
+
+
+                <br><span>Reseptin valmistusaika (min):</span></br>
+                <br><input id="cnumber" type='number' name='valmistusaika' min="0" th:required="erquired"/></br>
+
+                <br><span>Reseptin Ohje</span></br>
+                <br><textarea name='ohje' rows="5" cols="32" maxlength="1023" th:required="required"/></br>
+
+                <input id='submit_resepti' type='submit' value='Lisää resepti'/>
+            </form>
+            <script>
+                $('#reseptiForm').validate();
+            </script>
             
-            <br><div th:replace="recipe/datalist :: datalist">
-                
-            </div></br>
-            
-            
-            <br>
-            <fieldset>
-                <legend>Valitse Kategoriat</legend>
-                <div th:each="kategoria : ${kategoriat}">
-                    <input type="checkbox" name="kategoria" th:value="${kategoria.id}"/>
-                    <span th:text="${#strings.capitalize(kategoria.nimi)}">Kategoria</span>
-                </div>
-            </fieldset>
-            </br>
-
-
-            <br><span>Reseptin valmistusaika (min):</span></br>
-            <br><input id="cnumber" type='number' name='valmistusaika' min="0" th:required="erquired"/></br>
-            
-            <br><span>Reseptin Ohje</span></br>
-            <br><textarea name='ohje' rows="5" cols="32" th:required="required"/></br>
-            
-            <input id='submit_resepti' type='submit' value='Lisää resepti'/>
-        </form>
-        <script>
-            $('#reseptiForm').validate();
-        </script>
+            <br></br>
 
 
 
-        <div th:replace="index/template :: footer"></div>
+            <div th:replace="index/template :: footer"></div>
+        </div>
     </body>
 </html>
