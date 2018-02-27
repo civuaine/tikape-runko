@@ -37,7 +37,20 @@ public class RecipeController {
     public Route fetchOneRecipe = (Request request, Response response) -> {
 
         Map<String, Object> model = new HashMap<>();
-        model.put("resepti", this.recipeDao.findOne(Integer.parseInt(request.params(":id")))); //Napataan Requestin mukana tullut id ja etsitään sitä vastaava resepti
+        
+        Integer id = 0;
+        try{
+            id = Integer.parseInt(request.params(":id"));
+        }catch(NumberFormatException ex){
+            response.redirect(Path.Web.RECIPES);
+        }
+        
+        Recipe yksiResepti = this.recipeDao.findOne(id);
+        if(yksiResepti == null){
+            response.redirect(Path.Web.RECIPES);
+        }
+        
+        model.put("resepti", yksiResepti); //Napataan Requestin mukana tullut id ja etsitään sitä vastaava resepti
 
         model.put("INDEX", Path.Web.INDEX);
         model.put("poista_url", Path.Api.DELETE_RECIPE);
