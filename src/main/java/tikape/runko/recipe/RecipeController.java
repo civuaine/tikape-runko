@@ -90,25 +90,57 @@ public class RecipeController {
     };
 
     public Route addOneRecipe = (Request request, Response response) -> {
-        String nimi = request.queryParams("nimi"); //Napataan pyynnön mukana tullut arvo, joka löytyy avaimella "nimi"
-        Integer valmistusaika = Integer.parseInt(request.queryParams("valmistusaika"));
-        String ohje = request.queryParams("ohje");
-        String[] raaka_aineet = request.queryParamsValues("raaka-aine");
-        String[] maarat = request.queryParamsValues("maara");
-
-        if (request.queryParamsValues("kategoria") != null) {
-            String[] kategoriat = request.queryParamsValues("kategoria");
-            for (String kategoria : kategoriat) {
-                System.out.println("KATEGORIA: " + kategoria);
-            }
+        
+        String nimi = "";
+        Integer valmistusaika = 0;
+        String ohje = "";
+        String[] kategoriat = null;
+        String[] raaka_aineet = null;
+        String[] maarat = null;
+        
+        
+        if(request.queryParams().contains("nimi")){
+            nimi = request.queryParams("nimi"); //Napataan pyynnön mukana tullut arvo, joka löytyy avaimella "nimi"
+        }else{
+            response.redirect(Path.Web.RECIPES);
         }
-        System.out.println("NIMI: " + nimi);
-        System.out.println("VALMISTUSAIKA: " + valmistusaika);
-        System.out.println("OHJE: " + ohje);
+        
+        if(request.queryParams().contains("valmistusaika")){
+            
+            try{
+                valmistusaika = Integer.parseInt(request.queryParams("valmistusaika"));
+            }catch(NumberFormatException ex){
+                response.redirect(Path.Web.RECIPES);
+            }
+            
+        }else{
+            response.redirect(Path.Web.RECIPES);
+        }
+        
+        if(request.queryParams().contains("ohje")){
+            ohje = request.queryParams("ohje");
+        }else{
+            response.redirect(Path.Web.RECIPES);
+        }
+        
+        if(request.queryParams().contains("kategoria")){
+            kategoriat = request.queryParamsValues("kategoria");
+        }
+        
+        if(request.queryParams().contains("raaka-aine")){
+            raaka_aineet = request.queryParamsValues("raaka-aine");
+        }else{
+            response.redirect(Path.Web.RECIPES);
+        }
+        
+        if(request.queryParams().contains("maara")){
+            maarat = request.queryParamsValues("maara");
+        }else{
+            response.redirect(Path.Web.RECIPES);
+        }  
 
-        System.out.println("SEURAAVAKSI LISÄTÄÄN RESEPTI");
+  
         Integer recipe_id = this.recipeDao.addOne(nimi, valmistusaika, ohje);
-        System.out.println("RESEPTI LISÄTTY");
 
         for (int x = 0; x < raaka_aineet.length; x++) {
             Integer ingredient_id = Main.ingredientController.ingredientDao.addOne(raaka_aineet[x]);
