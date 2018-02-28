@@ -91,6 +91,8 @@ public class RecipeController {
 
     public Route addOneRecipe = (Request request, Response response) -> {
         
+        System.out.println("LISÄTÄÄN");
+        
         String nimi = "";
         Integer valmistusaika = 0;
         String ohje = "";
@@ -102,7 +104,7 @@ public class RecipeController {
         if(request.queryParams().contains("nimi")){
             nimi = request.queryParams("nimi"); //Napataan pyynnön mukana tullut arvo, joka löytyy avaimella "nimi"
         }else{
-            response.redirect(Path.Web.RECIPES);
+            return ViewUtil.render(new HashMap(), Path.Template.INDEX);
         }
         
         if(request.queryParams().contains("valmistusaika")){
@@ -114,13 +116,15 @@ public class RecipeController {
             }
             
         }else{
-            response.redirect(Path.Web.RECIPES);
+            return ViewUtil.render(new HashMap(), Path.Template.INDEX);
+//            response.redirect(Path.Web.RECIPES);
+           
         }
         
         if(request.queryParams().contains("ohje")){
             ohje = request.queryParams("ohje");
         }else{
-            response.redirect(Path.Web.RECIPES);
+            return ViewUtil.render(new HashMap(), Path.Template.INDEX);
         }
         
         if(request.queryParams().contains("kategoria")){
@@ -130,13 +134,13 @@ public class RecipeController {
         if(request.queryParams().contains("raaka-aine")){
             raaka_aineet = request.queryParamsValues("raaka-aine");
         }else{
-            response.redirect(Path.Web.RECIPES);
+            return ViewUtil.render(new HashMap(), Path.Template.INDEX);
         }
         
         if(request.queryParams().contains("maara")){
             maarat = request.queryParamsValues("maara");
         }else{
-            response.redirect(Path.Web.RECIPES);
+            return ViewUtil.render(new HashMap(), Path.Template.INDEX);
         }  
 
   
@@ -147,7 +151,7 @@ public class RecipeController {
             Main.recipeIngredientDao.addOne(recipe_id, ingredient_id, x, maarat[x]);
         }
         response.redirect(Path.Web.RECIPES); //Uudelleen ohjataan käyttäjä
-        return ""; //Tämä ei ikinä toteudu
+        return ViewUtil.render(new HashMap(), Path.Template.INDEX); //Tämä ei ikinä toteudu
     };
     
     
@@ -158,6 +162,7 @@ public class RecipeController {
         Main.recipeIngredientDao.delete(Integer.parseInt(request.queryParams("id")));
         response.redirect(Path.Web.RECIPES);
         
-        return "";
+        
+        return ViewUtil.render(new HashMap(), Path.Template.INDEX); //Tämä ei ikinä toteudu
     };
 }
